@@ -31,7 +31,10 @@ namespace AngularNetCore2.Controllers
             ViewBag.SomeData = new
             {
                 originalHtml = "<app-root></app-root>",
-                text = "Hello from server!"
+                someData = new
+                {
+                    text = "Hello from server!"
+                }
             };
 
             return View();

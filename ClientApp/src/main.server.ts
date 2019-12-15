@@ -22,30 +22,16 @@ export default createServerRenderer(params => {
         url: params.url,
         extraProviders: [
             provideModuleMap(LAZY_MODULE_MAP),
-            { provide: APP_BASE_HREF, useValue: params.baseUrl },
-            { provide: 'USER_DATA', useValue: { test: 123 } },
-            { provide: 'userData', useValue: { test: 123 } }
+            { provide: APP_BASE_HREF, useValue: params.baseUrl }
         ]
     };
 
-    // // Add user data if user already logged in
-    // if (params.data.userData) {
-    //     options.extraProviders.push({
-    //         provide: 'userData',
-    //         useValue: params.data.userData
-    //     });
-    // }
-
-    // // Add page specific data
-    // if (params.data.pageData) {
-    //     options.extraProviders.push({
-    //         provide: 'pageData',
-    //         useValue: {
-    //             url: params.url,
-    //             data: params.data.pageData
-    //         }
-    //     });
-    // }
+    if (params.data.someData) {
+        options.extraProviders.push({
+            provide: 'someData',
+            useValue: params.data.someData
+        });
+    }
 
     // Bypass ssr api call cert warnings in development
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
