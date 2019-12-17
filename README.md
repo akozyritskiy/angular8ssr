@@ -4,6 +4,7 @@
 
 * cd .ClientApp
 * npm i
+* npm run build
 * npm run build:ssr
 * cd ...
 * dotnet build
