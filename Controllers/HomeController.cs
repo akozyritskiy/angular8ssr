@@ -10,6 +10,15 @@ namespace AngularNetCore2.Controllers
 {
     public class HomeController : Controller
     {
+        private dynamic SomeData = new
+        {
+            originalHtml = "<app-root></app-root>",
+            someData = new
+            {
+                text = "Hello from server!"
+            }
+        };
+
         public IActionResult Index()
         {
             return RedirectToAction("ClientApp");
@@ -28,16 +37,23 @@ namespace AngularNetCore2.Controllers
 
         public IActionResult ClientApp()
         {
-            ViewBag.SomeData = new
-            {
-                originalHtml = "<app-root></app-root>",
-                someData = new
-                {
-                    text = "Hello from server!"
-                }
-            };
+            ViewBag.SomeData = this.SomeData;
 
             return View();
+        }
+
+        public IActionResult ClientAppLazy()
+        {
+            ViewBag.SomeData = this.SomeData;
+
+            return View("ClientApp");
+        }
+
+        public IActionResult Child()
+        {
+            ViewBag.SomeData = this.SomeData;
+
+            return View("ClientApp");
         }
     }
 }

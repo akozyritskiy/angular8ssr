@@ -10,6 +10,9 @@ export { AppServerModule } from './app/app.server.module';
 
 enableProdMode();
 
+// * NOTE :: leave this as require() since this file is built Dynamically from webpack
+// const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/main');
+
 export default createServerRenderer(params => {
     const { AppServerModule, AppServerModuleNgFactory, LAZY_MODULE_MAP } = (module as any).exports;
 
@@ -34,7 +37,7 @@ export default createServerRenderer(params => {
     }
 
     // Bypass ssr api call cert warnings in development
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
     const renderPromise = AppServerModuleNgFactory
         ? /* AoT */ renderModuleFactory(AppServerModuleNgFactory, options)
@@ -51,5 +54,9 @@ export default createServerRenderer(params => {
         return replacedHtml;
     };
 
-    return renderPromise.then(html => ({ html: cleanTemplate(html) }));
+    return renderPromise.then((html) => {
+        return {
+            html: cleanTemplate(html)
+        };
+    });
 });

@@ -4,7 +4,7 @@ import { Routes, RouterModule, Route } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ClientAppComponent } from './clientapp/clientapp.component';
 
-const defaultRouteUrl = '/home/clientapp';
+const defaultRouteUrl = '/home';
 
 const routes: Routes = [
     <Route>{
@@ -12,15 +12,23 @@ const routes: Routes = [
         redirectTo: defaultRouteUrl,
         pathMatch: 'full'
     },
+    // <Route>{
+    //     path: 'home',
+    //     component: AppComponent,
+    //     children: [
+    //         {
+    //             component: ClientAppComponent,
+    //             path: 'clientapp'
+    //         },
+    //         {
+    //             path: 'clientapplazy',
+    //             loadChildren: () => import('./clientapplazy/clientapplazy.module').then(mod => mod.ClientAppLazyAppModule)
+    //         },
+    //     ]
+    // },
     <Route>{
         path: 'home',
-        component: AppComponent,
-        children: [
-            {
-                component: ClientAppComponent,
-                path: 'clientapp'
-            }
-        ]
+        loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)
     },
     <Route>{
         path: '**',

@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientAppComponent } from './clientapp/clientapp.component';
+// import { ClientAppComponent } from './clientapp/clientapp.component';
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import { ClientAppComponent } from './clientapp/clientapp.component';
     providers: [],
     declarations: [
         AppComponent,
-        ClientAppComponent
+        // ClientAppComponent
     ],
     bootstrap: [AppComponent]
 })
